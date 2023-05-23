@@ -106,6 +106,6 @@ console.log(toTenDigit("0xaa", 16));
 console.log(toTenDigit("1000", 2));
 console.log(toTenDigit("100", 10));
 
-console.log(formTenDigit(170, 16));
-console.log(formTenDigit(8, 2));
-console.log(formTenDigit(100, 10));
+console.log(formTenDigit(127, 2));
+console.log(formTenDigit(192, 2));
+console.log(formTenDigit(168, 2));
