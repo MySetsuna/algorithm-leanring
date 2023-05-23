@@ -25,11 +25,11 @@ const feipei = (cpus = [], needCpuNumber) => {
     let temp;
     let temp2;
     if (grup1.length === caseNumber) {
-      temp = choose(grup1, needCpuNumber);
+      temp = choose1(grup1, needCpuNumber);
       result.push(...temp);
     }
     if (grup2.length === caseNumber) {
-      temp2 = choose(grup2, needCpuNumber);
+      temp2 = choose1(grup2, needCpuNumber);
       result.push(...temp2);
     }
     if (temp?.length || temp2?.length) break;
@@ -46,10 +46,36 @@ function factorialize(num) {
 function factorialize2(num) {
   let result = 1;
   for (let number = num; number > 1; number--) {
-    console.log(result, "result");
     result = number * result;
   }
   return result;
+}
+
+function choose1(arr, size) {
+  let allResult = [];
+  getChoose(arr, size, [], allResult);
+  return allResult;
+}
+function getChoose(arr, size, result, allResult = []) {
+  let arrLen = arr.length;
+  if (size > arrLen) {
+    return;
+  }
+  if (size === arrLen) {
+    allResult.push([...result, ...arr]);
+  } else {
+    for (let i = 0; i < arr.length; i++) {
+      const newResult = [...result];
+      newResult.push(arr[i]);
+      if (size == 1) {
+        allResult.push(newResult);
+      } else {
+        const newArr = [...arr];
+        newArr.splice(0, i + 1);
+        getChoose(newArr, size - 1, newResult, allResult);
+      }
+    }
+  }
 }
 
 function choose(arr, size) {
